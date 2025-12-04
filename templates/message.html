@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ sender }}의 메신저</title>
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>🔐 {{ sender }}의 안전한 채팅방 (대화 상대: {{ recipient }})</h1>
+
+      <div id="status-box" class="status-{{ key_exchange_status.lower() }}">
+        <p><strong>키 교환 상태:</strong> {{ key_exchange_status }}</p>
+        <p><strong>설정된 AES 키 일부:</strong> {{ session_key_snippet }}</p>
+      </div>
+
+      <div id="chat-box"></div>
+
+      <div class="input-area">
+        <input
+          type="text"
+          id="message-input"
+          placeholder="메시지를 입력하세요 (예: 비밀이야)"
+        />
+        <button onclick="sendMessage()">전송</button>
+      </div>
+
+      <h2>🔎 암호화/복호화 상세 과정</h2>
+      <div id="result-detail">
+        <p>
+          메시지 전송 후 서버 콘솔(터미널)에서 **암호화**와 **복호화** 로그를
+          확인하세요.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      const SENDER = '{{ sender }}'
+      const RECIPIENT = '{{ recipient }}'
+    </script>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+  </body>
+</html>

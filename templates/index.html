@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>보안 메신저 시뮬레이션</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+        background-color: #f4f4f9;
+      }
+      .container {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+      }
+      h1 {
+        color: #333;
+      }
+      .user-list a {
+        display: block;
+        margin: 10px 0;
+        padding: 15px 30px;
+        background-color: #5c6bc0;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1.2em;
+        transition: background-color 0.3s;
+      }
+      .user-list a:hover {
+        background-color: #3f51b5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🔑 키 교환 기반 보안 메신저 시뮬레이션</h1>
+      <p>시작할 사용자를 선택하여 **RSA 키 교환**을 시작하세요.</p>
+      <div class="user-list">
+        {% for user in users %}
+        <a href="/messenger/{{ user }}">{{ user }}로 접속</a>
+        {% endfor %}
+      </div>
+      <p style="margin-top: 30px; color: #666">
+        **참고:** 접속과 동시에 RSA 기반의 AES 세션 키 교환이 이루어집니다.
+      </p>
+    </div>
+  </body>
+</html>
