@@ -61,13 +61,13 @@ socket.on('send_success', function (result) {
 socket.on('new_message', function (payload) {
   console.log(
     '상대방으로부터 암호문 수신. 서버 로그에서 복호화 결과를 확인하세요.'
-  )
+  ) // 💡 수정된 부분: payload.decrypted_message 사용 // 서버는 이미 수신자 시뮬레이션으로 복호화를 완료했으므로, 해당 복호화 메시지를 표시합니다.
 
-  // 수신자에게 메시지 도착 알림 표시 (복호화는 서버에서 시뮬레이션하고 로그에 남김)
-  displayMessage(
-    `[${payload.sender} 수신] 서버 콘솔에서 복호화 확인.`,
-    payload.sender
-  )
+  const received_text = payload.decrypted_message
+    ? `${payload.decrypted_message}`
+    : `메시지 수신 (복호화 실패 또는 비정상)` // 복호화 메시지가 null일 경우 처리
+
+  displayMessage(received_text, payload.sender)
 })
 
 /**
